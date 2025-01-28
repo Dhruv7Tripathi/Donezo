@@ -19,7 +19,7 @@ const SignInComponent = () => {
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               width={80}
               height={80}
               alt="Logo"
@@ -28,9 +28,6 @@ const SignInComponent = () => {
           </div>
         </div>
         <CardHeader>
-          {/* <CardTitle className="pb-3 pt-2 text-center text-[30px] font-bold text-black">
-            Sign in
-          </CardTitle> */}
           <CardTitle className="text-center text-3xl font-bold text-gray-800 dark:text-gray-900">
             Welcome
           </CardTitle>
@@ -47,7 +44,7 @@ const SignInComponent = () => {
                 signIn("google", { callbackUrl: "/" });
               }}
             >
-              <Image src="/google.png" width={22} height={22} alt="google" />
+              <Image src="/google.png" width={10} height={10} alt="google" />
               Continue with Google
             </Button>
           </div>

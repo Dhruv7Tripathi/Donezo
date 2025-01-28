@@ -16,7 +16,9 @@ const Provider = ({ children }: Props) => {
       disableTransitionOnChange
     >
       <SessionProvider>
+
         {children}
+
       </SessionProvider>
     </ThemeProvider>
   );

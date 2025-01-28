@@ -11,6 +11,7 @@ import {
 import { useSession } from "next-auth/react";
 import UserAccountNav from "./userAccountNav";
 import SignInButton from "./SignInButton";
+import Image from "next/image";
 export default function Navbar() {
   const { data: session } = useSession();
   return (
@@ -18,11 +19,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="text-l font-bold">
           <Link href="/" className="flex items-center">
-            {/* <img
+            <Image
               src="/logo.webp"
               alt="logo"
               className="h-10 w-10 mr-3 rounded-full border border-gray-200"
-            /> */}
+              height={10}
+              width={10}
+            />
             <span className="text-blue-600 dark:text-blue-400">Donezo</span>
           </Link>
         </div>
@@ -95,16 +98,6 @@ export default function Navbar() {
                 </Link>
               </nav>
               <div className="mt-6 flex flex-col gap-4">
-                {/* <SignedOut>
-                  <SignInButton mode="modal">
-                    <button className="border border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800">
-                      Sign In
-                    </button>
-                  </SignInButton>
-                </SignedOut>
-                <SignedIn>
-                  <UserButton />
-                </SignedIn> */}
                 {/* <ModeToggle /> */}
                 {session?.user ? (
                   <UserAccountNav user={session.user} />
