@@ -162,7 +162,7 @@ export default function TodoPage() {
                   <h1 className="text-xl font-bold text-white">TodoMaster</h1>
                   <Sheet>
                     <SheetTrigger asChild>
-                      <Button variant="outline" size="sm" className="hidden md:flex">
+                      <Button variant="outline" size="sm" className="absolute right-4 top-4 rounded-2xl font-semibold hover:bg-grey700 md:right-8 md:top-4 hidden md:flex">
                         <Plus className="h-4 w-4 mr-2" />
                         Add Todo
                       </Button>
@@ -201,7 +201,7 @@ export default function TodoPage() {
                     <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
                     <SheetFooter>
                       <SheetClose asChild>
-                        <Button type="submit" onClick={handleAddTodo}>
+                        <Button type="submit" onClick={handleAddTodo} variant="secondary" className="w-full rounded-full  font-semibold py-3 hover:opacity-90 transition">
                           Add Todo
                         </Button>
                       </SheetClose>
@@ -211,12 +211,22 @@ export default function TodoPage() {
               </div>
             </div>
           </div>
-
-          {/* Main content */}
           <main className="flex-1 overflow-auto p-4">
             <div className="max-w-7xl mx-auto">
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-white mb-4 flex items-centerh-screen justify-center">My Todos</h2>
+                {todos.length === 0 ? (
+                  <p className="text-grey-400 mt-6 text-center">No todos found.</p>
+                ) : (
+                  <div>
+                    {todos.map((todo) => (
+                      <div key={todo.id} className="p-4 border border-gray-700 bg-gray-900 rounded-md">
+                        <h3 className="text-lg font-semibold text-white">{todo.title}</h3>
+                        <p className="text-gray-400">{todo.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 {/* <TodoList todos={todos} setTodos={setTodos} /> */}
               </div>
             </div>

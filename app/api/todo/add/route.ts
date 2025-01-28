@@ -1,35 +1,37 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
-
-const prisma = new PrismaClient()
 
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
-    const { whatToDo, whenToDo, note, status, userId } = reqBody;
+    const { userId, title, description, priority, status, duedate } = reqBody;
+    if (!userId || !title || !description || !priority || !status || !duedate) {
+      return NextResponse.json({ success: false, message: "Missing required fields" }, { status: 400 });
+    }
 
     const user = await prisma.user.findUnique({
-      where: {
-        id: userId
-      }
+      where: { id: userId }
     });
 
     if (!user) {
-      return NextResponse.json({ success: false }, { status: 404 })
+      return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
     }
-    // const { whatToDo, whenToDo, note, status, userId } = body;
 
     const newTodo = await prisma.todo.create({
       data: {
-        whatToDo,
-        whenToDo: new Date(whenToDo),
-        note,
-        status: status || "pending",
+        title,
+        description,
+        priority,
+        status,
+        duedate: new Date(duedate),
         user: { connect: { id: userId } }
       }
     });
-    return NextResponse.json({ success: true, message: "Task added successfully" }, { status: 201 });
+
+    return NextResponse.json({ success: true, message: "Task added successfully", data: newTodo }, { status: 201 });
+
   } catch (error) {
-    return NextResponse.json({ success: false, message: "Internal Server error" }, { status: 500 });
+    console.error("Error adding task:", error);
+    return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 });
   }
 }

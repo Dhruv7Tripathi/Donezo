@@ -24,14 +24,27 @@ model User {
 }
 
 model Todo {
-  id        String   @id @default(uuid())
-  whatToDo  String
-  whenToDo  DateTime
-  note      String
-  status    String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  priority    Priority
+  status      Status
+  duedate     DateTime
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  createdAt   DateTime @default(now())
+}
+
+enum Status {
+  ToDo
+  InProgress
+  Done
+}
+
+enum Priority {
+  High
+  Medium
+  Low
 }
 
 enum Provider {

@@ -132,7 +132,7 @@ export default function Home() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-blue-600">
+      {/* <div className="bg-blue-600">
         <motion.div
           className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between"
           initial={{ opacity: 0 }}
@@ -153,8 +153,8 @@ export default function Home() {
             </Button>
           </div>
         </motion.div>
-      </div>
-      <Footer />
+      </div> */}
+      {/* <Footer /> */}
     </main>
   )
 }

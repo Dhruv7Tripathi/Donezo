@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white-50 border-t border-gray-200 py-20 pb-20">
+    <footer className="bg-black/95 border-t border-gray-800border-t border-gray-200 py-20 pb-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
 
