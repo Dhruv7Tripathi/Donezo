@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/theme-provider"
-
+import { Toaster } from "sonner"
 type Props = {
   children: ReactNode
 }
@@ -18,7 +18,7 @@ const Provider = ({ children }: Props) => {
       <SessionProvider>
 
         {children}
-
+        <Toaster />
       </SessionProvider>
     </ThemeProvider>
   );

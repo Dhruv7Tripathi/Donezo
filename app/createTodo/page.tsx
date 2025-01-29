@@ -1,23 +1,17 @@
 "use client"
 
-import React, { useState } from "react"
-import { Plus, Menu } from "lucide-react"
+import React, { useEffect, useState } from "react"
+import { Plus, Menu, Trash2 } from "lucide-react"
 import { useSession } from "next-auth/react"
+import axios from "axios"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner";
 import { AppHeader } from "@/components/app-header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
@@ -109,6 +103,7 @@ const TodoForm = ({ newTodo, setNewTodo, handleAddTodo }: any) => (
 export default function TodoPage() {
   const { data: session, status } = useSession()
   const [todos, setTodos] = useState<Todo[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const [newTodo, setNewTodo] = useState<Omit<Todo, "id">>({
     title: "",
     description: "",
@@ -116,20 +111,76 @@ export default function TodoPage() {
     status: "todo",
     dueDate: "",
   })
+  const router = useRouter()
 
-  const handleAddTodo = () => {
-    const todo: Todo = {
-      id: Date.now().toString(),
-      ...newTodo,
+  useEffect(() => {
+    const fetchTodos = async () => {
+      if (session?.user?.id) {
+        try {
+          const response = await axios.get(`/api/todo/${session.user.id}`)
+          setTodos(response.data)
+        } catch (error) {
+          toast("Failed to fetch todos")
+        }
+      }
     }
-    setTodos([...todos, todo])
-    setNewTodo({
-      title: "",
-      description: "",
-      priority: "medium",
-      status: "todo",
-      dueDate: "",
-    })
+    fetchTodos()
+  }, [session?.user?.id])
+
+
+
+  const handleAddTodo = async () => {
+    // Add validation
+    if (!newTodo.title) {
+      toast("Title is required")
+      return
+    }
+
+    if (!session) {
+      toast("User session not found")
+      return
+    }
+    try {
+      setIsLoading(true)
+      const response = await axios.post("/api/todo/add", {
+        userId: session.user.id,
+        todo: newTodo  // Changed from newTodo to todo to match API expectation
+      })
+
+      if (response.data) {
+        setTodos(prevTodos => [...prevTodos, response.data])
+        setNewTodo({
+          title: "",
+          description: "",
+          priority: "medium",
+          status: "todo",
+          dueDate: "",
+        })
+        toast("Todo added successfully")
+      }
+    } catch (error: any) {
+      // Improved error handling
+      const errorMessage = error.response?.data?.message || "Failed to add todo"
+      toast(errorMessage)
+      console.error("Error adding todo:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleDeleteTodo = async (id: string) => {
+    try {
+      setIsLoading(true)
+      await axios.delete(`/api/todo/delete/${id}`)
+      setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
+      toast("Todo deleted successfully")
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || "Failed to delete todo"
+      toast(errorMessage)
+      console.error("Error deleting todo:", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (status === "loading") return <div>Loading...</div>
@@ -137,18 +188,15 @@ export default function TodoPage() {
 
   return (
     <div className="flex h-screen bg-black">
-      <SidebarProvider>
-        {/* Sidebar for desktop */}
+      <SidebarProvider className="bg-black">
         <div className="hidden md:block">
           <AppSidebar />
         </div>
 
         <div className="flex-1 flex flex-col h-full">
-          {/* Header */}
           <div className="bg-black p-4 border-b border-gray-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                {/* Mobile menu trigger */}
                 <div className="md:hidden">
                   <SidebarTrigger>
                     <Button variant="ghost" size="icon">
@@ -156,13 +204,16 @@ export default function TodoPage() {
                     </Button>
                   </SidebarTrigger>
                 </div>
-
-                {/* App title and add button */}
                 <div className="flex items-center space-x-4">
-                  <h1 className="text-xl font-bold text-white">TodoMaster</h1>
+                  <h1 className="text-xl font-bold text-white">Donezo</h1>
                   <Sheet>
                     <SheetTrigger asChild>
-                      <Button variant="outline" size="sm" className="absolute right-4 top-4 rounded-2xl font-semibold hover:bg-grey700 md:right-8 md:top-4 hidden md:flex">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="absolute right-4 top-4 rounded-2xl font-semibold hover:bg-grey700 md:right-8 md:top-4 hidden md:flex"
+                        disabled={isLoading}
+                      >
                         <Plus className="h-4 w-4 mr-2" />
                         Add Todo
                       </Button>
@@ -175,8 +226,8 @@ export default function TodoPage() {
                       <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
                       <SheetFooter>
                         <SheetClose asChild>
-                          <Button type="submit" onClick={handleAddTodo}>
-                            Add Todo
+                          <Button type="submit" onClick={handleAddTodo} disabled={isLoading}>
+                            {isLoading ? "Adding..." : "Add Todo"}
                           </Button>
                         </SheetClose>
                       </SheetFooter>
@@ -185,11 +236,10 @@ export default function TodoPage() {
                 </div>
               </div>
 
-              {/* Mobile add button */}
               <div className="md:hidden">
                 <Sheet>
                   <SheetTrigger asChild>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" disabled={isLoading}>
                       <Plus className="h-6 w-6" />
                     </Button>
                   </SheetTrigger>
@@ -201,8 +251,14 @@ export default function TodoPage() {
                     <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
                     <SheetFooter>
                       <SheetClose asChild>
-                        <Button type="submit" onClick={handleAddTodo} variant="secondary" className="w-full rounded-full  font-semibold py-3 hover:opacity-90 transition">
-                          Add Todo
+                        <Button
+                          type="submit"
+                          onClick={handleAddTodo}
+                          variant="secondary"
+                          className="w-full rounded-full font-semibold py-3 hover:opacity-90 transition"
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Adding..." : "Add Todo"}
                         </Button>
                       </SheetClose>
                     </SheetFooter>
@@ -214,20 +270,46 @@ export default function TodoPage() {
           <main className="flex-1 overflow-auto p-4">
             <div className="max-w-7xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-4 flex items-centerh-screen justify-center">My Todos</h2>
+                <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">My Todos</h2>
                 {todos.length === 0 ? (
-                  <p className="text-grey-400 mt-6 text-center">No todos found.</p>
+                  <p className="text-gray-400 mt-6 text-center">No todos found.</p>
                 ) : (
-                  <div>
+                  <div className="space-y-4">
                     {todos.map((todo) => (
-                      <div key={todo.id} className="p-4 border border-gray-700 bg-gray-900 rounded-md">
-                        <h3 className="text-lg font-semibold text-white">{todo.title}</h3>
-                        <p className="text-gray-400">{todo.description}</p>
+                      <div key={todo.id} className="p-4 border border-gray-700 bg-gray-900 rounded-md flex justify-between items-start">
+                        <div>
+                          <h3 className="text-lg font-semibold text-white">{todo.title}</h3>
+                          <p className="text-gray-400 mt-1">{todo.description}</p>
+                          <div className="flex gap-4 mt-2">
+                            <span className={`text-sm px-2 py-1 rounded ${todo.priority === "high"
+                              ? "bg-red-900/50 text-red-200"
+                              : todo.priority === "medium"
+                                ? "bg-yellow-900/50 text-yellow-200"
+                                : "bg-green-900/50 text-green-200"
+                              }`}>
+                              {todo.priority}
+                            </span>
+                            <span className="text-sm px-2 py-1 rounded bg-gray-800 text-gray-200">
+                              {todo.status}
+                            </span>
+                            <span className="text-sm px-2 py-1 rounded bg-gray-800 text-gray-200">
+                              {new Date(todo.dueDate).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleDeleteTodo(todo.id)}
+                          disabled={isLoading}
+                          className="text-gray-400 hover:text-red-400"
+                        >
+                          <Trash2 className="h-5 w-5" />
+                        </Button>
                       </div>
                     ))}
                   </div>
                 )}
-                {/* <TodoList todos={todos} setTodos={setTodos} /> */}
               </div>
             </div>
           </main>
