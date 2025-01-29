@@ -18,15 +18,11 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* <DarkModeToggle /> */}
-      {/* <Header /> */}
-
-
-      <header className="flex justify-between items-center p-4 bg-blue-100">
-        {/* <img src="/logo.jpg" alt="Hospital Logo" className="h-24" /> */}
-        <h1 className="text-black text-3xl font-semibold">System</h1>
-        <div className="text-black text-xl italic">{greeting}</div>
-      </header>
+      {/* <header > */}
+      {/* <img src="/logo.jpg" alt="Hospital Logo" className="h-24" /> */}
+      {/* <h1 className="text-black text-3xl font-semibold">System</h1> */}
+      <div className="text-white text-2xl ">{greeting}</div>
+      {/* </header> */}
 
 
     </>

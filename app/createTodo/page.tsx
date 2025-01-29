@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { Plus, Menu, Trash2 } from "lucide-react"
 import { useSession } from "next-auth/react"
-import axios from "axios"
-import { useRouter } from "next/navigation"
+import axios, { AxiosError } from "axios"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,10 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner";
-import { AppHeader } from "@/components/app-header"
+import Header from "@/components/header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import Image from "next/image"
+
 export interface Todo {
   id: string
   userId: string
@@ -26,8 +25,12 @@ export interface Todo {
   duedate: string
   createdAt: Date
 }
-
-const TodoForm = ({ newTodo, setNewTodo, handleAddTodo }: any) => (
+interface TodoFormProps {
+  newTodo: Omit<Todo, "id" | "userId" | "createdAt">;
+  setNewTodo: (todo: Omit<Todo, "id" | "userId" | "createdAt">) => void;
+  handleAddTodo: () => Promise<void>;
+}
+const TodoForm = ({ newTodo, setNewTodo }: TodoFormProps) => (
   <div className="grid gap-4 py-4">
     <div className="grid grid-cols-4 items-center gap-4">
       <Label htmlFor="title" className="text-right text-white">
@@ -124,10 +127,12 @@ export default function TodoPage() {
           if (response.data) {
             setTodos(response.data)
           }
-        } catch (error: any) {
-          const errorMessage = error.response?.data?.message || "Failed to fetch todos"
-          toast(errorMessage)
-          console.error("Error fetching todos:", error)
+        } catch (error: unknown) {
+          const axiosError = error as AxiosError<{ message?: string }>;
+          const errorMessage = axiosError.response?.data?.message || "Failed to fetch todos";
+
+          toast(errorMessage);
+          console.error("Error fetching todos:", axiosError);
         } finally {
           setIsLoading(false)
         }
@@ -158,7 +163,7 @@ export default function TodoPage() {
         duedate: newTodo.duedate
       })
 
-      if (response.data.success) { // Check for success flag
+      if (response.data.success) {
         setTodos(prevTodos => [...prevTodos, response.data.data])
         setNewTodo({
           title: "",
@@ -169,10 +174,15 @@ export default function TodoPage() {
         })
         toast("Todo added successfully")
       }
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || "Failed to add todo"
-      toast(errorMessage)
-      console.error("Error adding todo:", error)
+    } catch (error: unknown) {
+      // const errorMessage = error.response?.data?.message || "Failed to add todo"
+      // toast(errorMessage)
+      // console.error("Error adding todo:", error)
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMessage = axiosError.response?.data?.message || "Failed to add todos";
+
+      toast(errorMessage);
+      console.error("Error add todos:", axiosError);
     } finally {
       setIsLoading(false)
     }
@@ -184,10 +194,15 @@ export default function TodoPage() {
       await axios.delete(`/api/todo/delete/${id}`)
       setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
       toast("Todo deleted successfully")
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || "Failed to delete todo"
-      toast(errorMessage)
-      console.error("Error deleting todo:", error)
+    } catch (error: unknown) {
+      // const errorMessage = error.response?.data?.message || "Failed to delete todo"
+      // toast(errorMessage)
+      // console.error("Error deleting todo:", error)
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMessage = axiosError.response?.data?.message || "Failed to delete todos";
+
+      toast(errorMessage);
+      console.error("Error delete todos:", axiosError);
     } finally {
       setIsLoading(false)
     }
@@ -281,7 +296,10 @@ export default function TodoPage() {
           <main className="flex-1 overflow-auto p-4">
             <div className="max-w-7xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">My Todos</h2>
+                <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center"><Header />
+                  <br />
+                  <p className="p-4 text-center text-white">My Todo&apos;s are below here👇</p>
+                </h2>
                 {todos.length === 0 ? (
                   <p className="text-gray-400 mt-6 text-center">No todos found.</p>
                 ) : (
