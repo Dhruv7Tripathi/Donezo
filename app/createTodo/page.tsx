@@ -15,14 +15,16 @@ import { toast } from "sonner";
 import { AppHeader } from "@/components/app-header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-
+import Image from "next/image"
 export interface Todo {
   id: string
+  userId: string
   title: string
-  description: string
-  priority: "low" | "medium" | "high"
-  status: "todo" | "in-progress" | "done"
-  dueDate: string
+  description?: string
+  priority: "High" | "Medium" | "Low"
+  status: "ToDo" | "InProgress" | "Done"
+  duedate: string
+  createdAt: Date
 }
 
 const TodoForm = ({ newTodo, setNewTodo, handleAddTodo }: any) => (
@@ -54,16 +56,16 @@ const TodoForm = ({ newTodo, setNewTodo, handleAddTodo }: any) => (
         Priority
       </Label>
       <Select
+        value={newTodo.priority}
         onValueChange={(value) => setNewTodo({ ...newTodo, priority: value as Todo["priority"] })}
-        defaultValue={newTodo.priority}
       >
         <SelectTrigger className="col-span-3 bg-gray-900 border-gray-700">
           <SelectValue placeholder="Select priority" />
         </SelectTrigger>
         <SelectContent className="bg-gray-900 border-gray-700">
-          <SelectItem value="low">Low</SelectItem>
-          <SelectItem value="medium">Medium</SelectItem>
-          <SelectItem value="high">High</SelectItem>
+          <SelectItem value="High">High</SelectItem>
+          <SelectItem value="Medium">Medium</SelectItem>
+          <SelectItem value="Low">Low</SelectItem>
         </SelectContent>
       </Select>
     </div>
@@ -72,28 +74,28 @@ const TodoForm = ({ newTodo, setNewTodo, handleAddTodo }: any) => (
         Status
       </Label>
       <Select
+        value={newTodo.status}
         onValueChange={(value) => setNewTodo({ ...newTodo, status: value as Todo["status"] })}
-        defaultValue={newTodo.status}
       >
         <SelectTrigger className="col-span-3 bg-gray-900 border-gray-700">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent className="bg-gray-900 border-gray-700">
-          <SelectItem value="todo">To Do</SelectItem>
-          <SelectItem value="in-progress">In Progress</SelectItem>
-          <SelectItem value="done">Done</SelectItem>
+          <SelectItem value="ToDo">To Do</SelectItem>
+          <SelectItem value="InProgress">In Progress</SelectItem>
+          <SelectItem value="Done">Done</SelectItem>
         </SelectContent>
       </Select>
     </div>
     <div className="grid grid-cols-4 items-center gap-4">
-      <Label htmlFor="dueDate" className="text-right text-white">
+      <Label htmlFor="duedate" className="text-right text-white">
         Due Date
       </Label>
       <Input
-        id="dueDate"
+        id="duedate"
         type="date"
-        value={newTodo.dueDate}
-        onChange={(e) => setNewTodo({ ...newTodo, dueDate: e.target.value })}
+        value={newTodo.duedate}
+        onChange={(e) => setNewTodo({ ...newTodo, duedate: e.target.value })}
         className="col-span-3 bg-gray-900 border-gray-700"
       />
     </div>
@@ -104,23 +106,30 @@ export default function TodoPage() {
   const { data: session, status } = useSession()
   const [todos, setTodos] = useState<Todo[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const [newTodo, setNewTodo] = useState<Omit<Todo, "id">>({
+  const [newTodo, setNewTodo] = useState<Omit<Todo, "id" | "userId" | "createdAt">>({
     title: "",
     description: "",
-    priority: "medium",
-    status: "todo",
-    dueDate: "",
+    priority: "Medium",
+    status: "ToDo",
+    duedate: new Date().toISOString().split('T')[0]
   })
-  const router = useRouter()
+  // const router = useRouter()
 
   useEffect(() => {
     const fetchTodos = async () => {
       if (session?.user?.id) {
         try {
-          const response = await axios.get(`/api/todo/${session.user.id}`)
-          setTodos(response.data)
-        } catch (error) {
-          toast("Failed to fetch todos")
+          setIsLoading(true)
+          const response = await axios.get(`/api/todo/fetch/${session.user.id}`)
+          if (response.data) {
+            setTodos(response.data)
+          }
+        } catch (error: any) {
+          const errorMessage = error.response?.data?.message || "Failed to fetch todos"
+          toast(errorMessage)
+          console.error("Error fetching todos:", error)
+        } finally {
+          setIsLoading(false)
         }
       }
     }
@@ -128,9 +137,7 @@ export default function TodoPage() {
   }, [session?.user?.id])
 
 
-
   const handleAddTodo = async () => {
-    // Add validation
     if (!newTodo.title) {
       toast("Title is required")
       return
@@ -144,22 +151,25 @@ export default function TodoPage() {
       setIsLoading(true)
       const response = await axios.post("/api/todo/add", {
         userId: session.user.id,
-        todo: newTodo  // Changed from newTodo to todo to match API expectation
+        title: newTodo.title,
+        description: newTodo.description,
+        priority: newTodo.priority,
+        status: newTodo.status,
+        duedate: newTodo.duedate
       })
 
-      if (response.data) {
-        setTodos(prevTodos => [...prevTodos, response.data])
+      if (response.data.success) { // Check for success flag
+        setTodos(prevTodos => [...prevTodos, response.data.data])
         setNewTodo({
           title: "",
           description: "",
-          priority: "medium",
-          status: "todo",
-          dueDate: "",
+          priority: "Medium",
+          status: "ToDo",
+          duedate: "",
         })
         toast("Todo added successfully")
       }
     } catch (error: any) {
-      // Improved error handling
       const errorMessage = error.response?.data?.message || "Failed to add todo"
       toast(errorMessage)
       console.error("Error adding todo:", error)
@@ -205,6 +215,7 @@ export default function TodoPage() {
                   </SidebarTrigger>
                 </div>
                 <div className="flex items-center space-x-4">
+                  {/* <Image src="/l2.webp" alt="logo" className="h-10 w-10 mr-3 rounded-full border border-gray-200" height={10} width={10} /> */}
                   <h1 className="text-xl font-bold text-white">Donezo</h1>
                   <Sheet>
                     <SheetTrigger asChild>
@@ -281,9 +292,9 @@ export default function TodoPage() {
                           <h3 className="text-lg font-semibold text-white">{todo.title}</h3>
                           <p className="text-gray-400 mt-1">{todo.description}</p>
                           <div className="flex gap-4 mt-2">
-                            <span className={`text-sm px-2 py-1 rounded ${todo.priority === "high"
+                            <span className={`text-sm px-2 py-1 rounded ${todo.priority === "High"
                               ? "bg-red-900/50 text-red-200"
-                              : todo.priority === "medium"
+                              : todo.priority === "Medium"
                                 ? "bg-yellow-900/50 text-yellow-200"
                                 : "bg-green-900/50 text-green-200"
                               }`}>
@@ -293,7 +304,7 @@ export default function TodoPage() {
                               {todo.status}
                             </span>
                             <span className="text-sm px-2 py-1 rounded bg-gray-800 text-gray-200">
-                              {new Date(todo.dueDate).toLocaleDateString()}
+                              {new Date(todo.duedate).toLocaleDateString()}  {/* Changed from dueDate to duedate */}
                             </span>
                           </div>
                         </div>

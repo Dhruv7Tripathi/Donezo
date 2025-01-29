@@ -1,31 +1,31 @@
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
+
 interface Params {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export async function DELETE(req: NextRequest, { params }: Params) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json({ success: false, message: "ID is missing in the request params" }, { status: 400 });
     }
 
-    const isDeleted = await prisma.todo.delete({
+    const deletedPost = await prisma.todo.delete({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
 
-    if (!isDeleted) {
-      return NextResponse.json({ success: false, message: "Task not found" }, { status: 404 });
+    if (!deletedPost) {
+      return NextResponse.json({ success: false, message: "Post not found" }, { status: 404 });
     }
-    return NextResponse.json({ success: true, message: "Task deleted successfully" }, { status: 200 });
 
+    return NextResponse.json({ success: true, message: "Post deleted successfully" }, { status: 200 });
   } catch (error) {
+    console.error("Error deleting post:", error);
     return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 });
   }
 }
