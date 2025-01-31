@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, FileSpreadsheet } from "lucide-react";
+import { Calendar, Home, FileSpreadsheet } from "lucide-react";
 import UserAccountNav from "./userAccountNav";
 import SignInButton from "./SignInButton";
 import { useSession } from "next-auth/react";
