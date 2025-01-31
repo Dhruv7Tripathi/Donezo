@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Created by Dhruv Tripathi",
-  description: "Donezo a Todo App",
+  title: "Donezo",
+  description: "A Todo App Application",
 };
 
 export default function RootLayout({

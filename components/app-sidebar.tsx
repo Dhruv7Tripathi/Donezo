@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home, Inbox, FileSpreadsheet } from "lucide-react";
 import UserAccountNav from "./userAccountNav";
 import SignInButton from "./SignInButton";
 import { useSession } from "next-auth/react";
@@ -11,8 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-// Menu items.
 const items = [
   {
     title: "Home",
@@ -20,24 +18,14 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
     title: "Calendar",
-    url: "#",
+    url: "/calender",
     icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
   },
   {
     title: "about",
     url: "/about",
-    icon: Settings,
+    icon: FileSpreadsheet,
   },
 ];
 
