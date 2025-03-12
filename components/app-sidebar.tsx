@@ -18,11 +18,6 @@ const items = [
     icon: Home,
   },
   {
-    title: "Calendar",
-    url: "/calender",
-    icon: Calendar,
-  },
-  {
     title: "about",
     url: "/about",
     icon: FileSpreadsheet,

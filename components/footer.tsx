@@ -1,120 +1,56 @@
 "use client"
-import Link from 'next/link';
-import Image from 'next/image';
-import { Twitter, Linkedin, ExternalLink } from 'lucide-react';
+import Link from 'next/link'
+import React from 'react'
+import Image from 'next/image'
 
-const Footer: React.FC = () => {
+const Footer = () => {
+
   return (
-    <footer className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 border-t border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-4 md:px-8 py-16">
-        {/* Main Footer Content */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-12 md:space-y-0">
-          {/* Logo Section */}
-          <div className="flex flex-col items-center md:items-start space-y-4">
-            <div className="flex items-center">
-              <Image
-                src="/l2.webp"
-                alt="logo"
-                className="h-12 w-12 mr-3 rounded-full border border-gray-200 dark:border-gray-700 hover:scale-105 transition-transform duration-200"
-                height={12}
-                width={12}
-              />
-              <div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
-                  Donezo
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Building in public at{' '}
-                  <a
-                    href="https://twitter.com/dhruvtripathi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center"
-                  >
-                    @dhruvtripathi
-                    <ExternalLink className="ml-1 w-3 h-3" />
-                  </a>
-                </p>
-              </div>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm max-w-md text-center md:text-left">
-              Streamline your tasks and boost productivity with our intuitive todo management platform.
-            </p>
+    <div className="border-t border-neutral-100 dark:border-white/[0.1] px-8 py-20 bg-white dark:bg-black">
+      <div className="max-w-[87rem] mx-auto text-sm px-4 text-gray-400 flex sm:flex-row flex-col justify-between items-start ">
+        <div>
+          <div className="mb-4 flex">
+            <Link href="/" className="flex items-center space-x-1">
+              <Image src="/l2.webp" width={30} height={30} priority={false} alt="Logo" unoptimized={true} className="rounded-xl" />
+              <span className="text-2xl font-extrabold text-black dark:text-white ">Donezo</span>
+            </Link>
           </div>
-
-          {/* Navigation Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
-            {/* Quick Links */}
-            <div className="flex flex-col items-center md:items-start">
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Links</h4>
-              <ul className="space-y-3">
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/createTodo"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  >
-                    Create Task
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contactus"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex flex-col items-center md:items-start">
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Connect</h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 inline-flex items-center"
-                  >
-                    <Twitter className="w-4 h-4 mr-2" />
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/dhruv-tripathi-9848792aa/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 inline-flex items-center"
-                  >
-                    <Linkedin className="w-4 h-4 mr-2" />
-                    LinkedIn
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div className="mt-2">
+            Building in public at
+            <a className="dark:text-emerald-500 pl-1 font-medium text-neutral-600" target="__blank" href="https://github.com/dhruv7tripathi">@dhruv7tripathi</a>
           </div>
         </div>
-
-        {/* Bottom Bar
-        <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center md:text-left">
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            © {new Date().getFullYear()} Donezo. All rights reserved.
-          </p>
-        </div> */}
+        <div className="grid grid-cols-3 gap-10 items-start mt-10 md:mt-0">
+          <div className="flex justify-center space-y-4 flex-col mt-4">
+            <Link href='/'>
+              <p className="hover:text-foreground/80 text-foreground/60">Home</p>
+            </Link>
+            <Link href='/createTodo'>
+              <p className="hover:text-foreground/80 text-foreground/60">Todo</p>
+            </Link>
+            {/* <Link href='/contact'>
+              <p className="hover:text-foreground/80 text-foreground/60">Contact</p>
+            </Link> */}
+            <Link href='/about'>
+              <p className="hover:text-foreground/80 text-foreground/60">About</p>
+            </Link>
+          </div>
+          <div className="flex justify-center space-y-4 flex-col mt-4">
+            <Link href='https://x.com/dhruvtripathi' target="_blank">
+              <p className="hover:text-foreground/80 text-foreground/60">Twitter</p>
+            </Link>
+            <Link href='https://www.linkedin.com/in/dhruv-tripathi-9848792aa/' target='_blank'>
+              <p className="hover:text-foreground/80 text-foreground/60">LindedIn</p>
+            </Link>
+          </div>
+          {/* <div className="flex justify-center space-y-4 flex-col mt-4">
+            <p className="hover:text-foreground/80 text-foreground/60"><a href='/termsofservice' target='_blank'>Terms of Service</a></p>
+            <p className="hover:text-foreground/80 text-foreground/60"><a href='/privacypolicy' target='_blank'>Privacy Policy</a></p>
+          </div> */}
+        </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  )
+}
 
-export default Footer;
+export default Footer
