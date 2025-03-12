@@ -3,120 +3,77 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Rocket, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Footer from '@/components/footer'
+import { ModeToggle } from '@/components/darkmode'
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
+  transition: { duration: 0.6, ease: 'easeOut' }
 }
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.3
+      staggerChildren: 0.2
     }
   }
 }
 
-export default function lP() {
+export default function LP() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-48 -right-48 w-96 h-96 bg-blue-500 rounded-full opacity-20 blur-3xl" />
-          <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-purple-500 rounded-full opacity-20 blur-3xl" />
-        </div>
+    <main className="min-h-screen flex flex-col justify-between bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-black text-black dark:text-white relative">
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-          <motion.div
-            className="text-center"
-            initial="initial"
-            animate="animate"
-            variants={stagger}
-          >
-            <motion.div variants={fadeIn} className="inline-block mb-6">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Your Tasks, Reimagined
-              </span>
-            </motion.div>
-
-            <motion.h1
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight"
-              variants={fadeIn}
-            >
-              Organize Your Life with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Donezo
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="mt-8 text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed"
-              variants={fadeIn}
-            >
-              A powerful, yet simple todo application that helps you stay organized
-              and boost your productivity with modern tools and intuitive design.
-            </motion.p>
-
-            <motion.div
-              className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
-              variants={fadeIn}
-            >
-              <Button asChild size="lg" className="text-base bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-                <Link href="/createTodo" className="px-8">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="text-base border-slate-700 text-white hover:bg-slate-800">
-                <Link href="/signin" className="px-8">
-                  Login
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
+      {/* Dark Mode Toggle Button - Top Right */}
+      <div className="absolute top-6 right-6">
+        <ModeToggle />
       </div>
-      <div className="relative">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl" />
-          </div>
-        </div>
 
-        <motion.div
-          className="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+      <motion.section
+        className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 py-24 sm:py-32 text-center"
+        initial="initial"
+        animate="animate"
+        variants={stagger}
+      >
+        {/* Title with subtle gradient effect */}
+        <motion.h1
+          className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-green-400 dark:from-emerald-400 dark:to-green-200"
+          variants={fadeIn}
         >
-          <div className="rounded-2xl bg-gradient-to-r from-slate-800 to-slate-800/50 border border-slate-700 p-8 sm:p-12 backdrop-blur-sm">
-            <div className="lg:flex lg:items-center lg:justify-between">
-              <div>
-                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Ready to get started?
-                </h2>
-                <p className="mt-4 text-lg text-slate-400">
-                  Join thousands of users who are already organizing their lives with TodoNext.
-                </p>
-              </div>
-              <div className="mt-8 lg:mt-0 lg:ml-8">
-                <Button asChild size="lg" className="w-full lg:w-auto text-base bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-                  <Link href="/createTodo" className="px-8">
-                    Start Now
-                    <Rocket className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          Organize Your Life with <span className="text-black dark:text-white">Donezo</span>
+        </motion.h1>
 
+        {/* Description */}
+        <motion.p
+          className="mt-6 text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          variants={fadeIn}
+        >
+          A powerful yet simple to-do application designed to keep you organized and productive.
+          Experience the modern UI and intuitive design tailored for efficiency.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          className="mt-10 flex flex-col sm:flex-row gap-5 justify-center"
+          variants={fadeIn}
+        >
+          <Button asChild size="lg" className="px-8 py-3 text-lg bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+            <Link href="/createTodo" className="flex items-center gap-2">
+              Get Started
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </Button>
+
+          <Button asChild variant="outline" size="lg" className="px-8 py-3 text-lg border-gray-300 text-gray-900 dark:text-white dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+            <Link href="/signin">
+              Login
+            </Link>
+          </Button>
+        </motion.div>
+      </motion.section>
+
+      {/* Footer */}
       <Footer />
     </main>
   )

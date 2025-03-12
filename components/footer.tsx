@@ -36,7 +36,7 @@ const Footer = () => {
             </Link>
           </div>
           <div className="flex justify-center space-y-4 flex-col mt-4">
-            <Link href='https://x.com/dhruvtripathi' target="_blank">
+            <Link href='https://x.com/DhruvTripathi77' target="_blank">
               <p className="hover:text-foreground/80 text-foreground/60">Twitter</p>
             </Link>
             <Link href='https://www.linkedin.com/in/dhruv-tripathi-9848792aa/' target='_blank'>
