@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
   Card,
@@ -9,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+// import Link from 'next/link';
 import { signIn } from "next-auth/react";
 
 const SignInComponent = () => {
@@ -55,3 +56,140 @@ const SignInComponent = () => {
 };
 
 export default SignInComponent;
+
+// pages/index.tsx
+// import { useState } from 'react';
+// import Head from 'next/head';
+// import Image from 'next/image';
+// import { Button } from "@/components/ui/button";
+// // import Link from 'next/link';
+// import { signIn } from "next-auth/react";
+
+// export default function Home() {
+//   const [formData, setFormData] = useState({
+//     email: '',
+//     password: '',
+//   });
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({
+//       ...prev,
+//       [name]: value
+//     }));
+//   };
+
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     console.log('Form submitted:', formData);
+//     // Add your authentication logic here
+//   };
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Donezo- Everything you need</title>
+//         <meta name="description" content="Create content like never before" />
+//         <meta name="viewport" content="width=device-width, initial-scale=1" />
+//         <link rel="icon" href="/favicon.ico" />
+//       </Head>
+
+//       <div className="flex h-screen w-full">
+//         <div className="relative flex-1 hidden lg:block">
+//           <div className="absolute top-8 left-8 z-10">
+//             <span className="text-white text-2xl font-bold">Donezo</span>
+//           </div>
+//           <div className="absolute inset-0 flex items-center z-10 px-16">
+//             <div>
+//               <h1 className="text-white text-5xl font-bold leading-tight mb-6">
+//                 Everything you need,<br />
+//                 to make anything you want.
+//               </h1>
+//               <p className="text-white text-xl opacity-90">
+//                 Dozens of creative tools to ideate, generate and edit<br />
+//                 content like never before.
+//               </p>
+//             </div>
+//           </div>
+//           <div className="absolute inset-0 bg-black bg-opacity-60 z-[1]"></div>
+
+//           <Image
+//             src="/images/city-background.jpg"
+//             alt="City skyline"
+//             fill
+//             className="object-cover"
+//             priority
+//           />
+//         </div>
+//         <div className="flex-1 flex items-center justify-center p-8">
+//           <div className="w-full max-w-md">
+//             <h2 className="text-3xl font-bold text-center mb-2">Welcome to Donezo</h2>
+//             {/* <p className="text-center text-gray-600 mb-8">
+//               Don't have an account? <Link href="/signup" className="text-blue-600 font-medium">Sign up for free</Link>
+//             </p> */}
+
+//             <form onSubmit={handleSubmit} className="space-y-4">
+//               <div>
+//                 <input
+//                   type="text"
+//                   name="email"
+//                   placeholder="Username or Email"
+//                   value={formData.email}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+//                   required
+//                 />
+//               </div>
+
+//               <div>
+//                 <input
+//                   type="password"
+//                   name="password"
+//                   placeholder="Password"
+//                   value={formData.password}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+//                   required
+//                 />
+//               </div>
+
+//               {/* <Button
+//                 className="gap-2 font-semibold"
+//                 variant="outline"
+//                 onClick={() => {
+//                   signIn("google", { callbackUrl: "/" });
+//                 }}
+//               >
+//                 <Image src="/google.png" width={10} height={10} alt="google" />
+//                 Continue with Google
+//               </Button> */}
+
+//               <div className="relative flex items-center py-2">
+//                 <div className="flex-grow border-t border-gray-300"></div>
+//                 <span className="flex-shrink mx-4 text-gray-500 text-sm">OR</span>
+//                 <div className="flex-grow border-t border-gray-300"></div>
+//               </div>
+
+//               <Button
+//                 type="button"
+//                 className="w-full flex items-center justify-center gap-2 border border-gray-300 font-medium py-3 px-4 rounded-full hover:bg-gray-50 transition duration-300"
+//                 onClick={() => {
+//                   signIn("google", { callbackUrl: "/" });
+//                 }}
+//               >
+//                 <Image src="/google.png" alt="Google" width={20} height={20} />
+//                 Log in with Google
+//               </Button>
+
+//               {/* <div className="text-center mt-6">
+//                 <Link href="/forgot-password" className="text-gray-600 hover:text-gray-800">
+//                   Forgot Password
+//                 </Link>
+//               </div> */}
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }

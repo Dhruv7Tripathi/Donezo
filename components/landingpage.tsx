@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, CheckCircle2, Rocket, Shield, Sparkles, Zap } from 'lucide-react'
+import { ArrowRight, Rocket, Sparkles } from 'lucide-react'
 import Footer from '@/components/footer'
 
 const fadeIn = {

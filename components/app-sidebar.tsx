@@ -1,4 +1,4 @@
-import { Calendar, Home, FileSpreadsheet } from "lucide-react";
+import { Home, FileSpreadsheet } from "lucide-react";
 import UserAccountNav from "./userAccountNav";
 import SignInButton from "./SignInButton";
 import { useSession } from "next-auth/react";
@@ -41,8 +41,6 @@ export function AppSidebar() {
                 <SignInButton text="Sign In" />
               )}
             </div>
-
-            {/* Sidebar Menu Items */}
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
