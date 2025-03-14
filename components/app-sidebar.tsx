@@ -22,6 +22,11 @@ const items = [
     url: "/about",
     icon: FileSpreadsheet,
   },
+  {
+    title: "calender",
+    url: "/calender",
+    icon: FileSpreadsheet,
+  }
 ];
 
 export function AppSidebar() {
