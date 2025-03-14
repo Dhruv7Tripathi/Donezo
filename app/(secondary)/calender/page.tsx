@@ -1,137 +1,86 @@
-// pages/index.tsx or any page where you want to show the calendar
-import React, { useState } from 'react';
-import Calendar from '@/components/calender';
-import { format } from 'date-fns'; // You'll need to install this package
+"use client"
+import { useState } from "react";
+import { CalendarIcon, PlusIcon, UserIcon } from "lucide-react";
+import { format, startOfWeek, addDays } from "date-fns";
+import { Button } from "@/components/ui/button";
+import UserAccountNav from "@/components/userAccountNav";
+import SignInButton from "@/components/SignInButton";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "@/components/ui/pagination"
 
-interface Todo {
-  id: string;
-  title: string;
-  completed: boolean;
-  date: Date;
-}
+export default function CalendarPage() {
+  const [selectedDate] = useState(new Date());
+  const startWeek = startOfWeek(selectedDate, { weekStartsOn: 0 });
+  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(startWeek, i));
 
-export default function TodoPage() {
-  const [todos, setTodos] = useState<Todo[]>([
-    // Sample todos
-    { id: '1', title: 'Learn Next.js', completed: false, date: new Date() },
-    { id: '2', title: 'Build Todo App', completed: true, date: new Date() },
-    // Add more sample todos as needed
-  ]);
-
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [newTodoTitle, setNewTodoTitle] = useState('');
-
-  // Get todos for the selected date
-  const todosForSelectedDate = todos.filter(todo => {
-    const todoDate = new Date(todo.date);
-    return (
-      todoDate.getDate() === selectedDate.getDate() &&
-      todoDate.getMonth() === selectedDate.getMonth() &&
-      todoDate.getFullYear() === selectedDate.getFullYear()
-    );
-  });
-
-  // Create dates that have todos (for highlighting in the calendar)
-  const datesWithTodos = todos.map(todo => new Date(todo.date));
-
-  // Handle date selection from calendar
-  const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-  };
-
-  // Add new todo
-  const addTodo = () => {
-    if (newTodoTitle.trim() === '') return;
-
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      title: newTodoTitle,
-      completed: false,
-      date: selectedDate
-    };
-
-    setTodos([...todos, newTodo]);
-    setNewTodoTitle('');
-  };
-
-  // Toggle todo completion
-  const toggleTodo = (id: string) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ));
-  };
-
-  // Delete todo
-  const deleteTodo = (id: string) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
+  const { data: session } = useSession();
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Todo Application</h1>
+    <div className="flex h-screen bg-white text-black">
+      <aside className="w-64 bg-gray-100 p-4 border-r border-gray-300">
+        <div className="flex items-center space-x-2 text-gray-700">
+          <CalendarIcon size={24} />
+          <h1 className="text-lg font-semibold">Calendar</h1>
+        </div>
+        <Button className="w-full mt-4 flex items-center space-x-2 bg-blue-500 text-white hover:bg-blue-600">
+          <PlusIcon size={16} />
+          <Link href="/createTodo">
+            <span >Create</span>
+          </Link>
+        </Button>
+        <div className="mt-4">
+          <h2 className="text-sm font-semibold text-gray-600">My Calendars</h2>
+          <ul className="mt-2 space-y-2">
+            <li className="flex items-center space-x-2 text-gray-700">
+              <UserIcon size={16} className="text-blue-500" />
+              <div className="p-4">
+                {session?.user ? (
+                  <UserAccountNav user={session.user} />
+                ) : (
+                  <SignInButton text="Sign In" />
+                )}
+              </div>
+            </li>
+            <li className="text-green-600">Holidays in India</li>
+          </ul>
+        </div>
+      </aside>
 
-      <div className="flex flex-col md:flex-row gap-6">
-        {/* Calendar section */}
-        <div className="md:w-1/2">
-          <h2 className="text-lg font-semibold mb-2">Calendar</h2>
-          <Calendar
-            onDateSelect={handleDateSelect}
-            highlightDates={datesWithTodos}
-          />
+      {/* Main Content */}
+      <div className="flex-1 p-6">
+        <header className="flex justify-between items-center mb-4 border-b pb-2">
+          <h2 className="text-xl font-semibold">March 2025</h2>
+          <Button variant="outline">Today</Button>
+        </header>
+
+        {/* Week View */}
+        <div className="grid grid-cols-7 gap-2 border-b pb-2 text-center">
+          {weekDays.map((day, index) => (
+            <div key={index} className="p-2">
+              <span className="block text-sm text-gray-500">{format(day, "EEE")}</span>
+              <span
+                className={`block w-8 h-8 mx-auto rounded-full text-center leading-8 font-medium ${format(day, "d") === format(selectedDate, "d")
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700"
+                  }`}
+              >
+                {format(day, "d")}
+              </span>
+            </div>
+          ))}
         </div>
 
-        {/* Todo list section */}
-        <div className="md:w-1/2">
-          <h2 className="text-lg font-semibold mb-2">
-            Todos for {format(selectedDate, 'MMMM d, yyyy')}
-          </h2>
-
-          {/* Add new todo */}
-          <div className="flex mb-4">
-            <input
-              type="text"
-              placeholder="Add new todo..."
-              value={newTodoTitle}
-              onChange={(e) => setNewTodoTitle(e.target.value)}
-              className="flex-grow px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onKeyPress={(e) => e.key === 'Enter' && addTodo()}
-            />
-            <button
-              onClick={addTodo}
-              className="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
-            >
-              Add
-            </button>
-          </div>
-
-          {/* Todo list */}
-          <div className="space-y-2">
-            {todosForSelectedDate.length === 0 ? (
-              <p className="text-gray-500">No todos for this date.</p>
-            ) : (
-              todosForSelectedDate.map(todo => (
-                <div key={todo.id} className="flex items-center justify-between p-3 border rounded-md">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={todo.completed}
-                      onChange={() => toggleTodo(todo.id)}
-                      className="mr-3 h-4 w-4"
-                    />
-                    <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                      {todo.title}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => deleteTodo(todo.id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))
-            )}
-          </div>
+        {/* Calendar Grid */}
+        <div className="relative mt-4 h-[500px] border border-gray-300">
+          <div className="absolute top-[50%] left-0 w-full h-[2px] bg-red-500"></div>
         </div>
       </div>
     </div>
