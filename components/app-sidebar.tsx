@@ -36,9 +36,8 @@ export function AppSidebar() {
     <Sidebar >
       <SidebarContent>
         <SidebarGroup>
-          {/* <SidebarGroupLabel className="text-3xl p-4 m-4 px-2">Donezo</SidebarGroupLabel> */}
+          {/* <SidebarGroup className="text-3xl p-4 m-4 px-2">Donezo</SidebarGroup> */}
           <SidebarGroupContent>
-            {/* Display UserAccountNav or SignInButton at the top */}
             <div className="p-4">
               {session?.user ? (
                 <UserAccountNav user={session.user} />
@@ -50,7 +49,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url} className="flex items-center gap-2">
+                    <a href={item.url} className="flex text-white hover:text-white items-center gap-2">
                       <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>
                     </a>

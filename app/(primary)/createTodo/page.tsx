@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import Header from "@/components/header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-
+import { ModeToggle } from "@/components/darkmode"
 export interface Todo {
   id: string
   userId: string
@@ -237,7 +237,7 @@ export default function TodoPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="absolute right-4 top-4 rounded-2xl font-semibold hover:bg-grey700 md:right-8 md:top-4 hidden md:flex"
+                        className="absolute text-white right-4 top-4 rounded-2xl font-semibold hover:bg-grey700 md:right-8 md:top-4 hidden md:flex"
                         disabled={isLoading}
                       >
                         <Plus className="h-4 w-4 mr-2" />
