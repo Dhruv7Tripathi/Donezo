@@ -22,15 +22,12 @@ const Footer = () => {
         </div>
         <div className="grid grid-cols-3 gap-10 items-start mt-10 md:mt-0">
           <div className="flex justify-center space-y-4 flex-col mt-4">
-            <Link href='/'>
-              <p className="hover:text-foreground/80 text-foreground/60">Home</p>
-            </Link>
             <Link href='/createTodo'>
               <p className="hover:text-foreground/80 text-foreground/60">Todo</p>
             </Link>
-            {/* <Link href='/contact'>
-              <p className="hover:text-foreground/80 text-foreground/60">Contact</p>
-            </Link> */}
+            <Link href='/calender'>
+              <p className="hover:text-foreground/80 text-foreground/60">Calender</p>
+            </Link>
             <Link href='/about'>
               <p className="hover:text-foreground/80 text-foreground/60">About</p>
             </Link>
@@ -43,10 +40,6 @@ const Footer = () => {
               <p className="hover:text-foreground/80 text-foreground/60">LindedIn</p>
             </Link>
           </div>
-          {/* <div className="flex justify-center space-y-4 flex-col mt-4">
-            <p className="hover:text-foreground/80 text-foreground/60"><a href='/termsofservice' target='_blank'>Terms of Service</a></p>
-            <p className="hover:text-foreground/80 text-foreground/60"><a href='/privacypolicy' target='_blank'>Privacy Policy</a></p>
-          </div> */}
         </div>
       </div>
     </div>
