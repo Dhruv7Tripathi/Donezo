@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import Header from "@/components/header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { ModeToggle } from "@/components/darkmode"
+import { useRouter } from "next/navigation";
 export interface Todo {
   id: string
   userId: string
@@ -116,7 +116,12 @@ export default function TodoPage() {
     status: "ToDo",
     duedate: new Date().toISOString().split('T')[0]
   })
-  // const router = useRouter()
+  const router = useRouter()
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/signin")
+    }
+  }, [status, router])
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -209,7 +214,7 @@ export default function TodoPage() {
   }
 
   if (status === "loading") return <div>Loading...</div>
-  if (status === "unauthenticated") return <div>Access Denied</div>
+  // if (status === "unauthenticated") return <div>Access Denied</div>
 
   return (
     <div className="flex h-screen bg-black">
