@@ -40,6 +40,10 @@ const Footer = () => {
               <p className="hover:text-foreground/80 text-foreground/60">LindedIn</p>
             </Link>
           </div>
+          {/* <div className="flex justify-center space-y-4 flex-col mt-4">
+            <p className="hover:text-foreground/80 text-foreground/60"><a href='/termsofservice' target='_blank'>Terms of Service</a></p>
+            <p className="hover:text-foreground/80 text-foreground/60"><a href='/privacypolicy' target='_blank'>Privacy Policy</a></p>
+          </div> */}
         </div>
       </div>
     </div>
