@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 
 import { useSession } from "next-auth/react";
-import UserAccountNav from "./userAccountNav";
-import SignInButton from "./SignInButton";
-import { Themetoggle } from "./ui/themetoggle";
-import { Button } from "./ui/button";
+import UserAccountNav from "../auth/userAccountNav";
+import SignInButton from "../auth/SignInButton";
+import { Themetoggle } from "../ui/themetoggle";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const { data: session } = useSession();

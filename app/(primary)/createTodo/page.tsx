@@ -11,9 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner";
-import Header from "@/components/header"
+import Header from "@/components/landingpages/header"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/(secondary)/app-sidebar"
 import { useRouter } from "next/navigation";
 export interface Todo {
   id: string
@@ -180,9 +180,6 @@ export default function TodoPage() {
         toast("Todo added successfully")
       }
     } catch (error: unknown) {
-      // const errorMessage = error.response?.data?.message || "Failed to add todo"
-      // toast(errorMessage)
-      // console.error("Error adding todo:", error)
       const axiosError = error as AxiosError<{ message?: string }>;
       const errorMessage = axiosError.response?.data?.message || "Failed to add todos";
 
@@ -200,9 +197,6 @@ export default function TodoPage() {
       setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
       toast("Todo deleted successfully")
     } catch (error: unknown) {
-      // const errorMessage = error.response?.data?.message || "Failed to delete todo"
-      // toast(errorMessage)
-      // console.error("Error deleting todo:", error)
       const axiosError = error as AxiosError<{ message?: string }>;
       const errorMessage = axiosError.response?.data?.message || "Failed to delete todos";
 
@@ -214,7 +208,6 @@ export default function TodoPage() {
   }
 
   if (status === "loading") return <div>Loading...</div>
-  // if (status === "unauthenticated") return <div>Access Denied</div>
 
   return (
     <div className="flex h-screen bg-black">

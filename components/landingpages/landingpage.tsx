@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
-import Footer from '@/components/footer'
+import Footer from '@/components/landingpages/footer'
 import Navbar from './navbar'
 const fadeIn = {
   initial: { opacity: 0, y: 20 },

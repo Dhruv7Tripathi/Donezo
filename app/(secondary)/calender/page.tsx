@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { CalendarIcon, PlusIcon, UserIcon, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, subMonths, addMonths } from "date-fns";
 import { Button } from "@/components/ui/button";
-import UserAccountNav from "@/components/userAccountNav";
-import SignInButton from "@/components/SignInButton";
+import UserAccountNav from "@/components/auth/userAccountNav";
+import SignInButton from "@/components/auth/SignInButton";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
