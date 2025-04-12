@@ -28,7 +28,6 @@ export default function CalendarPage() {
   }, [currentDate]);
 
   useEffect(() => {
-    // Close sidebar when clicking outside on mobile
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (sidebarOpen && !target.closest('.sidebar')) {
@@ -51,7 +50,6 @@ export default function CalendarPage() {
 
   return (
     <div className="flex flex-col h-screen bg-white text-black md:flex-row">
-      {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-300 bg-gray-100">
         <Button variant="ghost" size="icon" onClick={toggleSidebar}>
           <Menu size={24} />
@@ -67,7 +65,6 @@ export default function CalendarPage() {
         </Link>
       </div>
 
-      {/* Sidebar - responsive */}
       <aside
         className={`sidebar fixed inset-y-0 left-0 w-64 bg-gray-100 p-4 border-r border-gray-300 md:relative md:block transform transition-transform duration-300 ease-in-out z-40 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
           }`}
@@ -107,7 +104,6 @@ export default function CalendarPage() {
         </div>
       </aside>
 
-      {/* Overlay for mobile sidebar */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
@@ -115,7 +111,6 @@ export default function CalendarPage() {
         />
       )}
 
-      {/* Main Calendar Content */}
       <div className="flex-1 p-3 md:p-6 overflow-auto">
         <header className="flex justify-between items-center mb-4 border-b pb-2">
           <Button variant="outline" size="icon" onClick={() => setCurrentDate(subMonths(currentDate, 1))}>

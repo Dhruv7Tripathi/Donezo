@@ -66,18 +66,18 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     email: '',
     password: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: value
+  //   }));
+  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -126,7 +126,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center mb-6 text-black">Welcome to Donezo</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
+              {/* <div>
                 <input
                   type="text"
                   name="email"
@@ -148,7 +148,7 @@ export default function Home() {
                   className="w-full flex items-center text-black justify-center gap-2 border border-gray-300 font-medium py-3 px-4 rounded-md hover:bg-gray-50 transition duration-300"
                   required
                 />
-              </div>
+              </div> */}
 
               {/* <Button
                 className="gap-2 font-semibold"
@@ -161,11 +161,11 @@ export default function Home() {
                 Continue with Google
               </Button> */}
 
-              <div className="relative flex items-center py-2">
+              {/* <div className="relative flex items-center py-2">
                 <div className="flex-grow border-t border-gray-300"></div>
                 <span className="flex-shrink mx-4 text-black text-sm">OR</span>
                 <div className="flex-grow border-t border-gray-300"></div>
-              </div>
+              </div> */}
 
               <Button
                 type="button"

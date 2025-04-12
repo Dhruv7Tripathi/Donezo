@@ -3,10 +3,9 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Menu } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Footer from '@/components/footer'
-import { Themetoggle } from './ui/themetoggle'
-
+import Navbar from './navbar'
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -24,32 +23,7 @@ const stagger = {
 export default function LP() {
   return (
     <main className="min-h-screen flex flex-col justify-between bg-white dark:bg-black text-black dark:text-white relative">
-      <nav className="w-full px-6 py-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
-        <div className="flex items-center space-x-2">
-          <h1 className="text-xl font-bold text-black dark:text-white">Donezo</h1>
-        </div>
-
-        <div className="hidden md:flex items-center space-x-6">
-          <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition">
-            Home
-          </Link>
-          <Link href="/createTodo" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition">
-            Dashboard
-          </Link>
-          <Link href="/calender" className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition">
-            Calender
-          </Link>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <Themetoggle />
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <motion.section
         className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 py-24 sm:py-32 text-center"

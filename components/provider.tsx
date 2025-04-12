@@ -11,7 +11,7 @@ const Provider = ({ children }: Props) => {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="black"
+      defaultTheme="white"
       enableSystem
       disableTransitionOnChange
     >
