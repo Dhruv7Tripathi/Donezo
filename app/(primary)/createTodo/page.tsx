@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Plus, Menu, Trash2, Edit, CheckCircle, Clock, Calendar } from "lucide-react"
+import { Plus, Menu, Trash2, Edit, CheckCircle, Clock } from "lucide-react"
 import { useSession } from "next-auth/react"
 import axios, { type AxiosError } from "axios"
 import { Button } from "@/components/ui/button"
@@ -36,7 +36,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { format, isBefore, parseISO } from "date-fns"
+import { isBefore, parseISO } from "date-fns"
 
 export interface Todo {
   id: string
@@ -57,7 +57,7 @@ interface TodoFormProps {
   mode: "add" | "edit"
 }
 
-const TodoForm = ({ todo, setTodo, handleSubmit, isSubmitting, mode }: TodoFormProps) => (
+const TodoForm = ({ todo, setTodo }: TodoFormProps) => (
   <div className="grid gap-4 py-4">
     <div className="grid grid-cols-4 items-center gap-4">
       <Label htmlFor="title" className="text-right text-white">
@@ -622,7 +622,7 @@ export default function TodoPage() {
         <DialogContent className="bg-gray-900 border-gray-700 text-white sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Edit Todo</DialogTitle>
-            <DialogDescription>Make changes to your todo item. Click save when you're done.</DialogDescription>
+            <DialogDescription>Make changes to your todo item. Click save when you&apos;re done.</DialogDescription>
           </DialogHeader>
           {editingTodo && (
             <TodoForm

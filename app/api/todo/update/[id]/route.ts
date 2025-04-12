@@ -2,8 +2,11 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/authoptions"
 import prisma from "@/lib/db"
+interface Params {
+  params: Promise<{ id: string }>;
+}
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: Params) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -11,7 +14,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 })
     }
 
-    const todoId = params.id
+    const { id: todoId } = await params
     const body = await request.json()
 
     const todo = await prisma.todo.findUnique({
