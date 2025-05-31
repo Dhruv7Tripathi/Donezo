@@ -34,6 +34,8 @@ Donezo is a modern and intuitive to-do application designed to help you manage y
    DATABASE_URL=your_database_url
    NEXTAUTH_SECRET=your_secret
    NEXTAUTH_URL=http://localhost:3000
+   GOOGLE_CLIENT_ID=
+   GOOGLE_CLIENT_SECRET=
    ```
 4. Run the development server:
    ```sh
@@ -44,10 +46,6 @@ Donezo is a modern and intuitive to-do application designed to help you manage y
 ## Contributing
 
 Contributions are welcome! Feel free to fork the repo and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
 
 ---
 
