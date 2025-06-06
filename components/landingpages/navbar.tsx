@@ -4,7 +4,7 @@ import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 import UserAccountNav from "../auth/userAccountNav";
 import SignInButton from "../auth/SignInButton";
-// import { Themetoggle } from "../ui/themetoggle";
+import { Themetoggle } from "../ui/themetoggle";
 import { Button } from "../ui/button";
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center space-x-4">
-        {/* <Themetoggle /> */}
+        <Themetoggle />
         <div className="flex items-center">
           {session?.user ? (
             <UserAccountNav user={session.user} />
