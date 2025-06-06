@@ -7,7 +7,13 @@ import { ArrowRight } from 'lucide-react';
 import Footer from '@/components/landingpages/footer';
 import Navbar from './navbar';
 import Image from 'next/image';
-
+import { faqItems } from '@/constants/index'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -89,6 +95,32 @@ export default function LP() {
           </div>
         </div>
       </div>
+      <section className="w-full py-16 sm:py-20 bg-black/30">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <Accordion
+            type="single"
+            collapsible
+            className="max-w-3xl mx-auto divide-y  divide-gray-700"
+          >
+            {faqItems.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left dark:hover:text-white  sm:text-lg font-medium py-4 text-white">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm sm:text-base text-gray-200 pb-4">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
 
       <Footer />
     </main>
