@@ -11,7 +11,7 @@ const Footer = () => {
         <div>
           <div className="mb-4 flex">
             <Link href="/" className="flex items-center space-x-1">
-              <Image src="/l2.webp" width={30} height={30} priority={false} alt="Logo" unoptimized={true} className="rounded-xl" />
+              <Image src="/donezo.png" width={60} height={60} priority={false} alt="Logo" unoptimized={true} className="rounded-xl" />
               <span className="text-2xl font-extrabold text-black dark:text-white ">Donezo</span>
             </Link>
           </div>
