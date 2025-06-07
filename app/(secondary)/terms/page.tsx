@@ -36,12 +36,12 @@ export default function TermsOfService() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              By accessing and using Donezo ("the Service"), you accept and agree to be bound by the terms and provision
+              By accessing and using Donezo , you accept and agree to be bound by the terms and provision
               of this agreement. If you do not agree to abide by the above, please do not use this service.
             </p>
             <p className="text-gray-700 dark:text-gray-300">
-              These Terms of Service ("Terms") govern your use of our website located at donezo.app (the "Service")
-              operated by Donezo ("us", "we", or "our").
+              These Terms of Service  govern your use of our website located at donezo.app
+              operated by Donezo.
             </p>
           </section>
 
@@ -152,7 +152,7 @@ export default function TermsOfService() {
               9. Disclaimers and Limitations
             </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              The Service is provided "as is" and "as available" without warranties of any kind. We do not guarantee
+              The Service is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind. We do not guarantee
               that the Service will be uninterrupted, secure, or error-free.
             </p>
             <p className="text-gray-700 dark:text-gray-300">
@@ -165,7 +165,7 @@ export default function TermsOfService() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">10. Changes to Terms</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               We reserve the right to modify these Terms at any time. We will notify users of any material changes by
-              posting the new Terms on this page and updating the "Last updated" date.
+              posting the new Terms on this page and updating the &quot;Last updated&quot; date.
             </p>
             <p className="text-gray-700 dark:text-gray-300">
               Your continued use of the Service after any changes constitutes acceptance of the new Terms.

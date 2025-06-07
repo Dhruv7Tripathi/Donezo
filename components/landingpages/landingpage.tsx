@@ -3,12 +3,12 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, CheckCircle, Star, Zap } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { ArrowRight } from "lucide-react"
 import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
 import Image from "next/image"
-import { faqItems, features } from "@/constants/index"
+import { faqItems } from "@/constants/index"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const fadeIn = {
@@ -25,17 +25,7 @@ const stagger = {
   },
 }
 
-const slideInLeft = {
-  initial: { opacity: 0, x: -50 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
-}
 
-const slideInRight = {
-  initial: { opacity: 0, x: 50 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
-}
 
 export default function LP() {
   return (
@@ -132,36 +122,31 @@ export default function LP() {
           >
             {[
               {
-                name: "Sarah Johnson",
-                role: "Product Manager",
+                name: "Dhruv Tripathi",
+                role: "Software developer",
                 content:
                   "Donezo has completely transformed how I manage my daily tasks. The interface is beautiful and the features are exactly what I needed.",
-                avatar: "SJ",
+                avatar: "DT",
               },
               {
-                name: "Mike Chen",
+                name: "Yuvraj Singh",
                 role: "Freelancer",
                 content:
-                  "I've tried dozens of to-do apps, but Donezo is the only one that stuck. It's simple yet powerful, and the sync works flawlessly.",
-                avatar: "MC",
+                  "I&apos;ve tried dozens of to-do apps, but Donezo is the only one that stuck. It&apos;s simple yet powerful, and the sync works flawlessly.",
+                avatar: "YS",
               },
               {
-                name: "Emily Rodriguez",
+                name: "Nitin Prajapti",
                 role: "Team Lead",
                 content:
-                  "Our team's productivity has increased significantly since switching to Donezo. The collaboration features are game-changing.",
-                avatar: "ER",
+                  "Our team&apos;s productivity has increased significantly since switching to Donezo. The collaboration features are game-changing.",
+                avatar: "NP",
               },
             ].map((testimonial, index) => (
               <motion.div key={index} variants={fadeIn}>
                 <Card className="h-full border-gray-200 dark:border-gray-800">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">"{testimonial.content}"</p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4">&quot;{testimonial.content}&quot;</p>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-semibold">
                         {testimonial.avatar}

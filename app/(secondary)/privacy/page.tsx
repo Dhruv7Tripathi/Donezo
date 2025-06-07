@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
             <Eye className="w-6 h-6 text-blue-500 mb-2" />
             <h3 className="font-semibold text-gray-900 dark:text-white mb-1">What We Collect</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Only what's necessary to provide our service</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Only what&apos;s necessary to provide our service</p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
             <Lock className="w-6 h-6 text-green-500 mb-2" />
@@ -238,7 +238,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">9. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">9. Children&apos;s Privacy</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Our Service is not intended for children under 13 years of age. We do not knowingly collect personal
               information from children under 13. If you are a parent or guardian and believe your child has provided us
@@ -255,7 +255,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
               <li>Posting the new Privacy Policy on this page</li>
-              <li>Updating the "Last updated" date</li>
+              <li>Updating the &quot;Last updated&quot; date</li>
               <li>Sending you an email notification for material changes</li>
             </ul>
             <p className="text-gray-700 dark:text-gray-300">
