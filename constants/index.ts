@@ -30,3 +30,36 @@ export const faqItems = [
       "You can reach us anytime at support@tripathidhruv366@gmail.com or through the in-app Help & Feedback section.",
   },
 ];
+
+export const features = [
+  {
+    title: "Smart Organization",
+    description: "Automatically categorize and prioritize your tasks with AI-powered suggestions.",
+    icon: "🧠",
+  },
+  {
+    title: "Cross-Platform Sync",
+    description: "Access your tasks anywhere, anytime. Perfect synchronization across all devices.",
+    icon: "🔄",
+  },
+  {
+    title: "Beautiful Interface",
+    description: "Clean, modern design that makes task management a pleasure, not a chore.",
+    icon: "✨",
+  },
+  {
+    title: "Team Collaboration",
+    description: "Share projects and collaborate with your team in real-time.",
+    icon: "👥",
+  },
+  {
+    title: "Advanced Analytics",
+    description: "Track your productivity patterns and optimize your workflow.",
+    icon: "📊",
+  },
+  {
+    title: "Offline Support",
+    description: "Work without interruption, even when you're offline.",
+    icon: "📱",
+  },
+]
