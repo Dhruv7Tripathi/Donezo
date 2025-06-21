@@ -132,14 +132,14 @@ export default function LP() {
                 name: "Yuvraj Singh",
                 role: "Freelancer",
                 content:
-                  "I&apos;ve tried dozens of to-do apps, but Donezo is the only one that stuck. It&apos;s simple yet powerful, and the sync works flawlessly.",
+                  "I've tried dozens of to-do apps, but Donezo is the only one that stuck. It's simple yet powerful, and the sync works flawlessly.",
                 avatar: "YS",
               },
               {
                 name: "Nitin Prajapti",
                 role: "Team Lead",
                 content:
-                  "Our team&apos;s productivity has increased significantly since switching to Donezo. The collaboration features are game-changing.",
+                  "Our team's productivity has increased significantly since switching to Donezo. The collaboration features are game-changing.",
                 avatar: "NP",
               },
             ].map((testimonial, index) => (
