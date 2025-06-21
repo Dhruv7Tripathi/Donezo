@@ -24,12 +24,9 @@ const stagger = {
     },
   },
 }
-
-
-
 export default function LP() {
   return (
-    <main className="min-h-screen flex flex-col justify-between bg-white dark:bg-black text-black dark:text-white relative">
+    <main className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-black flex flex-col justify-between dark:bg-black text-black dark:text-white relative">
       <Navbar />
       <div className="overflow-hidden bg-white dark:bg-transparent">
         <motion.section
@@ -43,7 +40,7 @@ export default function LP() {
             className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-black dark:text-white"
             variants={fadeIn}
           >
-            Organize Your Life with <span className="text-emerald-500">Donezo</span>
+            Organize Your Life with <span className="text-green-500">Donezo</span>
           </motion.h1>
 
           <motion.p
@@ -58,10 +55,10 @@ export default function LP() {
             <Button
               asChild
               size="lg"
-              className="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-lg transition-transform transform hover:scale-105"
+              className="px-8 py-3 bg-green-700 hover:bg-green-700 text-white rounded-xl shadow-lg transition-transform transform hover:scale-105"
             >
               <Link href="/createTodo" className="flex items-center gap-2">
-                Get Started Free
+                Get Started
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
@@ -79,7 +76,7 @@ export default function LP() {
 
         </motion.section>
 
-        <div className="mx-auto min-h-screen max-w-7xl [mask-image:linear-gradient(to_bottom,black_50%,transparent_100%)]">
+        {/* <div className="mx-auto min-h-screen max-w-7xl [mask-image:linear-gradient(to_bottom,black_50%,transparent_100%)]">
           <div className="[perspective:1200px] -mr-16 pl-16 lg:-mr-56 lg:pl-56">
             <div className="rotate-x-[20deg]">
               <div className="lg:h-[44rem] relative skew-x-[.36rad]">
@@ -93,12 +90,12 @@ export default function LP() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
 
 
-      <section className="py-20 bg-gray-50 dark:bg-black">
+      <section className="py-20 bg-gradient-to-r from-black via-gray-900 to-black bg-gray-50 dark:bg-black">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div
             className="text-center mb-16"
@@ -164,7 +161,7 @@ export default function LP() {
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-black">
+      <section className="py-20 bg-white bg-gradient-to-r from-black via-gray-900 to-black dark:bg-black">
         <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div
             className="text-center mb-12"

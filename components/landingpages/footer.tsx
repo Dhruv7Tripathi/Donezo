@@ -12,7 +12,6 @@ const Footer = () => {
       { name: "Todo App", href: "/createTodo" },
       { name: "Calendar", href: "/calendar" },
       { name: "About Us", href: "/about" },
-      { name: "Blog", href: "/blog" },
     ],
     legal: [
       { name: "Privacy Policy", href: "/privacy" },
@@ -45,7 +44,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+    <footer className="border-t bg-gradient-to-r from-black via-gray-900 to-black border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
 
       <div className="py-16 px-6 ml-16 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
