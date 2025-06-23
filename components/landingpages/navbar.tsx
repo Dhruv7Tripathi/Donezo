@@ -31,7 +31,7 @@ const Navbar = () => {
       <nav
         data-state={menuState && 'active'}
         className="fixed z-20 w-full px-2 group">
-        <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12 border-gray-400', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border-zinc-200 dark:border-white/10 backdrop-blur-md lg:px-5')}>
+        <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12 border-gray-400', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border-zinc-200 dark:border-white/10 backdrop-blur-sm lg:px-5')}>
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
               <Link

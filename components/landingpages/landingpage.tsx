@@ -4,7 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, CheckCircle, Smartphone, Zap, Users, Shield, Star } from "lucide-react"
+import { ArrowRight, Smartphone, Zap, Users, Shield, Star } from "lucide-react"
 import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
 import { faqItems } from "@/constants/index"
@@ -160,7 +160,6 @@ export default function LP() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-black via-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -170,13 +169,8 @@ export default function LP() {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeIn}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Loved by thousands of users</h2>
-            <div className="flex items-center justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-              ))}
-              <span className="ml-2 text-gray-400">4.9/5 from 2,000+ reviews</span>
-            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Loved by many users</h2>
+
           </motion.div>
 
           <motion.div
