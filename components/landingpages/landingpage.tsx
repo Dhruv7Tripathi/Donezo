@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
-import Image from "next/image"
 import { faqItems } from "@/constants/index"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -75,22 +74,6 @@ export default function LP() {
 
 
         </motion.section>
-
-        {/* <div className="mx-auto min-h-screen max-w-7xl [mask-image:linear-gradient(to_bottom,black_50%,transparent_100%)]">
-          <div className="[perspective:1200px] -mr-16 pl-16 lg:-mr-56 lg:pl-56">
-            <div className="rotate-x-[20deg]">
-              <div className="lg:h-[44rem] relative skew-x-[.36rad]">
-                <Image
-                  className="rounded-2xl z-[2] relative border border-gray-200 dark:border-gray-800 shadow-2xl"
-                  src="/dash.png"
-                  alt="Dashboard Preview"
-                  width={2880}
-                  height={2074}
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
 
 
