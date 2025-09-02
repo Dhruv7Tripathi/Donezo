@@ -78,12 +78,12 @@ const Navbar = () => {
                   ))}
                 </ul>
               </div>
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+              <div className="flex w-full text-white flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button
                   asChild
                   variant="outline"
                   size="sm"
-                  className={cn(isScrolled && 'lg:hidden')}>
+                  className={cn(isScrolled && 'lg:hidden text-white border-white hover:bg-white/10')}>
 
                   {session?.user ? (
                     <UserAccountNav user={session.user} />

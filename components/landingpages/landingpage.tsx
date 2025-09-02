@@ -38,13 +38,13 @@ const scaleIn = {
 
 export default function LP() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col justify-between dark:bg-black text-black dark:text-white relative overflow-hidden">
+    <main className="min-h-screen  flex flex-col justify-between dark:bg-black text-black dark:text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900/20 via-transparent to-transparent"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fillRule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fillOpacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
       <Navbar />
 
-      <div className="overflow-hidden bg-white dark:bg-transparent relative">
+      <div className="overflow-hidden bg-black relative">
         <motion.section
           className="relative max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center flex flex-col justify-center"
           initial="initial"
@@ -54,7 +54,7 @@ export default function LP() {
 
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-black dark:text-white leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight"
             variants={fadeInUp}
           >
             Organize Your Life with{" "}
@@ -62,7 +62,7 @@ export default function LP() {
           </motion.h1>
 
           <motion.p
-            className="mt-6 text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4"
+            className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4"
             variants={fadeIn}
           >
             A powerful yet simple to-do application designed to keep you organized and productive. Experience the modern
@@ -88,7 +88,7 @@ export default function LP() {
               asChild
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto px-8 py-4 text-lg border-2 border-gray-300 dark:border-gray-600 bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="w-full sm:w-auto px-8 py-4 text-lg  bg-white/10 backdrop-blur-sm text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               <Link href="/signin">Sign In</Link>
             </Button>
