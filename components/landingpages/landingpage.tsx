@@ -44,9 +44,9 @@ export default function LP() {
 
       <Navbar />
 
-      <div className="overflow-hidden bg-black relative">
+      <div className="overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black relative">
         <motion.section
-          className="relative max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center flex flex-col justify-center"
+          className="relative border rounded-2xl max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center flex flex-col justify-center"
           initial="initial"
           animate="animate"
           variants={stagger}
@@ -54,15 +54,18 @@ export default function LP() {
 
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight"
+            className="text-4xl max-w-8xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-tight"
             variants={fadeInUp}
           >
-            Organize Your Life with{" "}
-            <span className="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">Donezo</span>
+            Organize
+            <br />
+            Your
+            Life with{" "}
+            <span className="bg-gradient-to-r from-neutral-100 font-bold to-neutral-300 bg-clip-text text-transparent">Donezo</span>
           </motion.h1>
 
           <motion.p
-            className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4"
+            className="mt-6 text-base  sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4"
             variants={fadeIn}
           >
             A powerful yet simple to-do application designed to keep you organized and productive. Experience the modern
@@ -76,21 +79,24 @@ export default function LP() {
             <Button
               asChild
               size="lg"
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+              className="w-full sm:w-auto px-8 py-4 bg-neutral-800 hover:bg-neutral-900 text-white text-lg rounded-xl shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
             >
               <Link href="/createTodo" className="flex items-center justify-center gap-2 text-lg font-semibold">
                 Get Started
-                <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
 
             <Button
               asChild
-              variant="outline"
+              // variant="outline"
               size="lg"
-              className="w-full sm:w-auto px-8 py-4 text-lg  bg-white/10 backdrop-blur-sm text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="w-full sm:w-auto px-8 py-4 text-lg space-x-4 bg-background backdrop-blur-sm text-white font-bold  rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
             >
-              <Link href="/signin">Sign In</Link>
+              <Link href="/signin">
+
+                Sign In
+                <ArrowRight className="h-5 w-5" />
+              </Link>
             </Button>
           </motion.div>
 
@@ -98,7 +104,7 @@ export default function LP() {
         </motion.section>
       </div>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-black via-gray-900 to-black relative">
+      <section className="py-16 sm:py-20 lg:py-24 bg-black relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -160,7 +166,7 @@ export default function LP() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-black via-gray-900 to-black">
+      <section className="py-16 sm:py-20 lg:py-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -232,8 +238,7 @@ export default function LP() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white bg-gradient-to-r from-black via-gray-900 to-black dark:bg-black">
+      <section className="py-16 min-h-screen sm:py-20 lg:py-2 bg-black ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-12"

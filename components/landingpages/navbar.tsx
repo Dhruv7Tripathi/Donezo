@@ -56,7 +56,7 @@ const Navbar = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="text-white hover:text-accent-foreground block duration-150">
+                      className="text-white bg-background px-4 rounded-full py-2 hover:text-accent-foreground block duration-150">
                       <span>{item.name}</span>
                     </Link>
                   </li>
