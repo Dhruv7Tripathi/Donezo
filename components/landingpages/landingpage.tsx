@@ -4,12 +4,13 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Smartphone, Zap, Users, Shield, Star } from "lucide-react"
+import { Smartphone, Zap, Users, Shield, Star, ChevronRight } from "lucide-react"
 import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
 import { faqItems } from "@/constants/index"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
+import cta from "../(secondary)/cta"
+import CTA from "../(secondary)/cta"
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -43,10 +44,10 @@ export default function LP() {
       <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fillRule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fillOpacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
 
-      <div className="overflow-hidden border-b  rounded-2xl border-neutral-800 bg-gradient-to-r from-black via-gray-900 to-black relative">
+      <div className="overflow-hidden min-h-screen border-b  rounded-2xl border-neutral-800 bg-gradient-to-r from-black via-gray-900 to-black relative">
         <Navbar />
         <motion.section
-          className="relative  max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8  text-center flex flex-col justify-center"
+          className="relative  max-w-6xl py-20 mt-24 mx-auto px-4 sm:px-6 lg:px-8  text-center flex flex-col justify-center"
           initial="initial"
           animate="animate"
           variants={stagger}
@@ -61,7 +62,11 @@ export default function LP() {
             <br />
             Your
             Life with{" "}
-            <span className="bg-gradient-to-r from-neutral-100 font-bold to-neutral-300 bg-clip-text text-transparent">Donezo</span>
+            <span
+              className="bg-gradient-stop mx-auto max-w-6xl text-balance bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900/30 dark:from-neutral-100 dark:via-neutral-100 via-50% dark:to-neutral-100/30 bg-clip-text py-2 px-2 text-5xl font-bold leading-[1.1] tracking-tighter text-transparent md:text-6xl lg:text-7xl"
+            >
+              Donezo
+            </span>
           </motion.h1>
 
           <motion.p
@@ -85,18 +90,24 @@ export default function LP() {
               </Link>
             </Button>
 
-            <Button
-              asChild
-              // variant="outline"
-              size="lg"
-              className="w-full sm:w-auto px-8 py-4 text-lg space-x-4 bg-background backdrop-blur-sm text-white font-bold  rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+            <motion.div
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <Link href="/signin">
-
-                Sign In
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
+              <Button
+                size="lg"
+                className="text-lg w-full sm:w-auto bg-background hover:bg-background dark:bg-background text-neutral-900 dark:text-neutral-100 group"
+              >
+                <Link href="/signin" className="flex items-center">
+                  Sign In
+                  <motion.span
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <ChevronRight className="ml-2 size-5 transition-transform group-hover:translate-x-3" />
+                  </motion.span>
+                </Link>
+              </Button>
+            </motion.div>
           </div>
 
 
@@ -271,7 +282,7 @@ export default function LP() {
       </section>
 
 
-
+      <CTA />
       <Footer />
     </main>
   )
