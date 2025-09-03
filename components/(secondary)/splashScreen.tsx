@@ -29,7 +29,7 @@ export default function SplashScreen() {
       )}
     >
       <Image
-        src="/donezo.png"
+        src="/logo.gif"
         alt="App Logo"
         width={150}
         height={150}

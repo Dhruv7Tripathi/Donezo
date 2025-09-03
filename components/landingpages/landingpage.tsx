@@ -42,11 +42,11 @@ export default function LP() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900/20 via-transparent to-transparent"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fillRule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fillOpacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
-      <Navbar />
 
-      <div className="overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black relative">
+      <div className="overflow-hidden border-b  rounded-2xl border-neutral-800 bg-gradient-to-r from-black via-gray-900 to-black relative">
+        <Navbar />
         <motion.section
-          className="relative border rounded-2xl max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center flex flex-col justify-center"
+          className="relative  max-w-6xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8  text-center flex flex-col justify-center"
           initial="initial"
           animate="animate"
           variants={stagger}
@@ -72,14 +72,13 @@ export default function LP() {
             UI and intuitive design tailored for efficiency across all your devices.
           </motion.p>
 
-          <motion.div
+          <div
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center px-4"
-            variants={fadeIn}
           >
             <Button
               asChild
               size="lg"
-              className="w-full sm:w-auto px-8 py-4 bg-neutral-800 hover:bg-neutral-900 text-white text-lg rounded-xl shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+              className="w-full sm:w-auto px-8 py-4 bg-neutral-700 hover:bg-neutral-800 text-white text-lg rounded-xl shadow-xl transition-all duration-300 transform hover:shadow-2xl"
             >
               <Link href="/createTodo" className="flex items-center justify-center gap-2 text-lg font-semibold">
                 Get Started
@@ -98,7 +97,7 @@ export default function LP() {
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
-          </motion.div>
+          </div>
 
 
         </motion.section>

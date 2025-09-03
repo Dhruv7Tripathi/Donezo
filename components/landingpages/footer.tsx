@@ -37,7 +37,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="border-t bg-neutral-950 to-black border-gray-800 text-white">
+    <footer className="border-t bg-black border-gray-900 rounded-2xl text-white">
       <div className="py-16 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -45,12 +45,12 @@ const Footer = () => {
               <div className="mb-6">
                 <Link href="/" className="flex items-center space-x-3">
                   <Image
-                    src="/donezo.png"
-                    width={48}
-                    height={48}
+                    src="/logo.gif"
+                    width={38}
+                    height={38}
                     alt="Donezo Logo"
                     unoptimized
-                    className="rounded-xl"
+                    className="rounded-sm"
                   />
                   <span className="text-2xl font-extrabold text-white">Donezo</span>
                 </Link>
@@ -125,12 +125,12 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-800 py-6 px-6 sm:px-8 lg:px-12">
+      <div className=" py-6 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 text-center">
             <div className="flex items-center space-x-1 text-gray-400">
               <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              <Heart className="w-4 h-4 animate-pulse text-red-500 fill-current" />
               <span>by this guy</span>
             </div>
           </div>
