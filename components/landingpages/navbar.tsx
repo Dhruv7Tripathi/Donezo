@@ -19,8 +19,8 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Signup', href: '/signup' },
+    { name: 'Create Todo', href: '/createTodo' },
+    { name: 'Calendar', href: '/calendar' },
   ]
 
   return (
@@ -52,7 +52,7 @@ const Navbar = () => {
                 {item.name}
               </AnchorNav>
             ))}
-            <div className="flex items-center bg-neutral-700 border border-neutral-800 rounded-xl font-bold text-xl space-x-6 px-4 py-1">
+            <div className="flex items-center bg-neutral-100 border text-black border-neutral-800 rounded-xl font-medium text-xl space-x-6 ">
               {session?.user ? (
                 <UserAccountNav user={session.user} />
               ) : (

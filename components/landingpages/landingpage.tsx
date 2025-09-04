@@ -9,8 +9,9 @@ import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
 import { faqItems } from "@/constants/index"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import cta from "../(secondary)/cta"
 import CTA from "../(secondary)/cta"
+import Feature from "@/components/(secondary)/feature-section-with-bento-grid";
+
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -115,6 +116,7 @@ export default function LP() {
       </div>
 
       <section className="py-16 sm:py-20 lg:py-24 bg-black relative">
+        <Feature />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
