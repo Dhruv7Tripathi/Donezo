@@ -3,14 +3,14 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Smartphone, Zap, Users, Shield, Star, ChevronRight } from "lucide-react"
+// import { Card, CardContent } from "@/components/ui/card"
+import { ChevronRight } from "lucide-react"
 import Footer from "@/components/landingpages/footer"
 import Navbar from "./navbar"
 import { faqItems } from "@/constants/index"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import CTA from "../(secondary)/cta"
-import Feature from "@/components/(secondary)/feature-section-with-bento-grid";
+import Feature from "@/components/(secondary)/feature";
 
 const fadeIn = {
   initial: { opacity: 0, y: 30 },

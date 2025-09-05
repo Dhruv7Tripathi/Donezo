@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function CTA() {
   return (
     <div className="bg-black flex flex-col justify-center  items-center min-h-screen space-y-4 p-6 rounded-lg shadow-lg">
-      <div className='text-center justify-center w-full rounded-xl p-12  border border-dashed border-neutral-800 flex flex-col items-center  mx-auto'>
+      <div className='text-center bg-neutral-950  justify-center w-full rounded-xl p-12 ml-12 mr-12  border border-dashed border-neutral-800 flex flex-col items-center  mx-auto'>
 
         <h2 className="bg-gradient-stop mx-auto max-w-6xl text-balance bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-900/30 dark:from-neutral-100 dark:via-neutral-100 via-50% dark:to-neutral-100/30 bg-clip-text py-2 px-2 text-6xl font-bold leading-[1.1] tracking-tighter text-transparent md:text-6xl lg:text-7xl">
           Ready to get started?
