@@ -1,4 +1,3 @@
-import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import TodoList from "@/components/(secondary)/todo-items";
 import FrameworkAgnostic from '@/components/framework-agnostic';

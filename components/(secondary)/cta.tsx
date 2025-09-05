@@ -11,7 +11,7 @@ export default function CTA() {
         </h2>
         <p className="mt-2 mb-8 max-w-xl text-center text-white text-base">
           Join thousands of users who&apos;ve already boosted their productivity with our tools.
-          Whether you're managing tasks or planning big projects — we&apos;ve got you covered.
+          Whether you&apos;re managing tasks or planning big projects — we&apos;ve got you covered.
           Sign up now and take control of your time.
         </p>
         <Link

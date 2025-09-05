@@ -2,9 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Heart } from "lucide-react"
 import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa"
-
 const Footer = () => {
   const footerSections = {
     product: [

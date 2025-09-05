@@ -13,9 +13,7 @@ const ULogo = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
+const GlassCard = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
     return (
       <div
@@ -47,7 +45,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
                   className="group/social grid h-[30px] w-[30px] place-content-center rounded-full border-none bg-white shadow-[rgba(0,0,0,0.5)_0px_7px_5px_-5px] transition-all duration-200 ease-in-out group-hover:[box-shadow:rgba(0,0,0,0.2)_-5px_20px_10px_0px] group-hover:[transform:translate3d(0,0,50px)] hover:bg-black active:bg-yellow-400"
                   style={{ transitionDelay: delay }}
                 >
-                  <Icon className="h-4 w-4 stroke-black transition-colors" />
+                  <Icon className="h-4 w-4 text-black transition-colors" />
                 </button>
               ))}
             </div>
@@ -91,5 +89,4 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
 );
 
 GlassCard.displayName = "GlassCard";
-
 export default GlassCard;

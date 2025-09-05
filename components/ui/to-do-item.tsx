@@ -128,9 +128,8 @@ export function TodoItem({
     </motion.div>
   );
 }
-
 function decay(value: number, max: number) {
-  let entry = value / max;
-  let sigmoid = 2 / (1 + Math.exp(-entry)) - 1;
+  const entry = value / max;
+  const sigmoid = 2 / (1 + Math.exp(-entry)) - 1;
   return sigmoid * max;
 }
